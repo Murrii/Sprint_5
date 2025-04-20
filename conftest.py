@@ -1,12 +1,13 @@
 import pytest
-from data import URL_LOGIN, URL_MAIN, URL_REGISTER, URL_FEED, URL_FORGOT_PASSWORD
+from data import URL_LOGIN, URL_MAIN, URL_REGISTER, URL_FEED, URL_FORGOT_PASSWORD, PASS, LOGIN
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from random import randint
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-from locators import LocatorsRegister
+from locators import LocatorsRegister, LocatorsLogin, LocatorsMain
 
+# Открываем экран авторизации
 @pytest.fixture
 def chrome_driver_login_page():
     options = Options()
@@ -17,8 +18,39 @@ def chrome_driver_login_page():
 
     yield chrome_driver
 
+
     chrome_driver.quit()
 
+# Открываем экран авторизации и авторизируемся
+@pytest.fixture
+def chrome_driver_login_enter_open_main(chrome_driver_login_page):
+    chrome_driver_login_page.find_element(*LocatorsLogin.EMAIL_INPUT).send_keys(LOGIN)
+    chrome_driver_login_page.find_element(*LocatorsLogin.PASS_INPUT).send_keys(PASS)
+    chrome_driver_login_page.find_element(*LocatorsLogin.LOGIN_BUTTON).click()
+
+    yield chrome_driver_login_page
+
+    chrome_driver_login_page.quit()
+
+# Авторизируемся и переходим к экрану Лента Заказов
+@pytest.fixture
+def chrome_driver_login_enter_open_feed(chrome_driver_login_enter_open_main):
+    chrome_driver_login_enter_open_main.find_element(*LocatorsMain.ENTER_TO_FEED).click()
+
+    yield chrome_driver_login_enter_open_main
+
+    chrome_driver_login_enter_open_main.quit()
+
+# Авторизируемся и переходим к экрану Личный кабинет
+@pytest.fixture
+def chrome_driver_login_enter_open_profile(chrome_driver_login_enter_open_main):
+    chrome_driver_login_enter_open_main.find_element(*LocatorsMain.ENTER_TO_PROFILE_BUTTON).click()
+
+    yield chrome_driver_login_enter_open_main
+
+    chrome_driver_login_enter_open_main.quit()
+
+# Открываем экран Главная без авторизации
 @pytest.fixture
 def chrome_driver_main():
     options = Options()
@@ -31,6 +63,7 @@ def chrome_driver_main():
 
     chrome_driver.quit()
 
+# Открываем экран Лента Заказов без авторизации
 @pytest.fixture
 def chrome_driver_feed():
     options = Options()
@@ -43,6 +76,7 @@ def chrome_driver_feed():
 
     chrome_driver.quit()
 
+# Открываем экран Регистрация
 @pytest.fixture
 def chrome_driver_register():
     options = Options()
@@ -55,6 +89,7 @@ def chrome_driver_register():
 
     chrome_driver.quit()
 
+# Открываем экран Восстановление пароля
 @pytest.fixture
 def chrome_driver_forgot_password_page():
     options = Options()
@@ -67,6 +102,7 @@ def chrome_driver_forgot_password_page():
 
     chrome_driver.quit()
 
+# генераторы логина, пароля, email
 @pytest.fixture
 def random_login():
     login = str(randint(100, 999)) + ' удава'
@@ -82,6 +118,7 @@ def random_email():
     email = 'karinatrofimova20' + str(randint(100, 999)) + '@yandex.ru'
     return email
 
+# Открываем страницу регистрации и заполняем поля Логин и Email
 @pytest.fixture
 def chrome_driver_register_full_valid_name_email(chrome_driver_register, random_email, random_login):
     WebDriverWait(chrome_driver_register, 3).until(

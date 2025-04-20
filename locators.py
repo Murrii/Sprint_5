@@ -17,6 +17,13 @@ class LocatorsMain:
     ENTER_TO_ACC_BUTTON = (By.XPATH, './/button[text()="Войти в аккаунт"]')
     ENTER_TO_PROFILE_BUTTON = (By.XPATH, './/*[text()="Личный Кабинет"]')
     GET_FOOD_BUTTON = (By.XPATH, './/button[text()="Оформить заказ"]')
+    ENTER_TO_FEED = (By.XPATH, './/*[text()="Лента Заказов"]')
 
 class LocatorsForgotPassword:
     LOGIN_BUTTON = (By.XPATH, './/*[text()="Войти"]')
+
+class LocatorsProfile:
+    EXIT_BUTTON = (By.XPATH, './/button[text()="Выход"]')
+
+class LocatorsFeed:
+    ENTER_TO_PROFILE_BUTTON = (By.XPATH, './/*[text()="Личный Кабинет"]')
