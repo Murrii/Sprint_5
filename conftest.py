@@ -1,5 +1,5 @@
 import pytest
-from data import URL_LOGIN, URL_MAIN, URL_REGISTER
+from data import URL_LOGIN, URL_MAIN, URL_REGISTER, URL_FEED, URL_FORGOT_PASSWORD
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from random import randint
@@ -8,7 +8,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from locators import LocatorsRegister
 
 @pytest.fixture
-def chrome_driver_login():
+def chrome_driver_login_page():
     options = Options()
     options.add_argument('--window-size=1920,1080')
 
@@ -32,12 +32,36 @@ def chrome_driver_main():
     chrome_driver.quit()
 
 @pytest.fixture
+def chrome_driver_feed():
+    options = Options()
+    options.add_argument('--window-size=1920,1080')
+
+    chrome_driver = webdriver.Chrome(options)
+    chrome_driver.get(URL_FEED)
+
+    yield chrome_driver
+
+    chrome_driver.quit()
+
+@pytest.fixture
 def chrome_driver_register():
     options = Options()
     options.add_argument('--window-size=1920,1080')
 
     chrome_driver = webdriver.Chrome(options)
     chrome_driver.get(URL_REGISTER)
+
+    yield chrome_driver
+
+    chrome_driver.quit()
+
+@pytest.fixture
+def chrome_driver_forgot_password_page():
+    options = Options()
+    options.add_argument('--window-size=1920,1080')
+
+    chrome_driver = webdriver.Chrome(options)
+    chrome_driver.get(URL_FORGOT_PASSWORD)
 
     yield chrome_driver
 
