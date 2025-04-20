@@ -22,11 +22,15 @@ def chrome_driver_login_page():
     chrome_driver.quit()
 
 # Открываем экран авторизации и авторизируемся
+# Ждем, пока прогрузятся элементы экрана, затем передаем в тест
 @pytest.fixture
 def chrome_driver_login_enter_open_main(chrome_driver_login_page):
     chrome_driver_login_page.find_element(*LocatorsLogin.EMAIL_INPUT).send_keys(LOGIN)
     chrome_driver_login_page.find_element(*LocatorsLogin.PASS_INPUT).send_keys(PASS)
     chrome_driver_login_page.find_element(*LocatorsLogin.LOGIN_BUTTON).click()
+
+    WebDriverWait(chrome_driver_login_page, 3).until(
+        expected_conditions.element_to_be_clickable(LocatorsMain.GET_FOOD_BUTTON))
 
     yield chrome_driver_login_page
 

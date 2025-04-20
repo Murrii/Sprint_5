@@ -21,6 +21,14 @@ class LocatorsMain:
     ENTER_TO_FEED = (By.XPATH, './/*[text()="Лента Заказов"]')
     MAIN_TITLE = (By.XPATH, './/*[text()="Соберите бургер"]')
 
+    MENU_BREAD_FOLDER = (By.XPATH, './/span[text()="Булки"]')
+    MENU_BREAD_FOLDER_BOLD_CHECK = (By.XPATH, './/span[text()="Булки"]/parent::div')
+    MENU_SOUSE_FOLDER = (By.XPATH, './/span[text()="Соусы"]')
+    MENU_SOUSE_FOLDER_BOLD_CHECK = (By.XPATH, './/span[text()="Соусы"]/parent::div')
+    MENU_INGREDIENTS_FOLDER = (By.XPATH, './/span[text()="Начинки"]')
+    MENU_INGREDIENTS_FOLDER_BOLD_CHECK = (By.XPATH, './/span[text()="Начинки"]/parent::div')
+
+
 class LocatorsForgotPassword:
     LOGIN_BUTTON = (By.XPATH, './/*[text()="Войти"]')
 
