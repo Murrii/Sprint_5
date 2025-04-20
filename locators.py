@@ -12,18 +12,23 @@ class LocatorsLogin:
     EMAIL_INPUT = (By.XPATH, './/*[text()="Email"]/parent::div/input')
     PASS_INPUT = (By.NAME, 'Пароль')
     LOGIN_BUTTON = (By.XPATH, './/button[text()="Войти"]')
+    LOGIN_TITLE = (By.XPATH, './/*[text()="Вход"]')
 
 class LocatorsMain:
     ENTER_TO_ACC_BUTTON = (By.XPATH, './/button[text()="Войти в аккаунт"]')
     ENTER_TO_PROFILE_BUTTON = (By.XPATH, './/*[text()="Личный Кабинет"]')
     GET_FOOD_BUTTON = (By.XPATH, './/button[text()="Оформить заказ"]')
     ENTER_TO_FEED = (By.XPATH, './/*[text()="Лента Заказов"]')
+    MAIN_TITLE = (By.XPATH, './/*[text()="Соберите бургер"]')
 
 class LocatorsForgotPassword:
     LOGIN_BUTTON = (By.XPATH, './/*[text()="Войти"]')
 
 class LocatorsProfile:
     EXIT_BUTTON = (By.XPATH, './/button[text()="Выход"]')
+    GO_TO_MAIN_BUTTON = (By.XPATH, './/*[text()="Конструктор"]')
+    PROFILE_TITLE = (By.XPATH, './/*[text()="Профиль"]')
+    LOGO = (By.CLASS_NAME, 'AppHeader_header__logo__2D0X2')
 
 class LocatorsFeed:
     ENTER_TO_PROFILE_BUTTON = (By.XPATH, './/*[text()="Личный Кабинет"]')

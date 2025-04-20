@@ -5,7 +5,7 @@ from selenium.webdriver.chrome.options import Options
 from random import randint
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-from locators import LocatorsRegister, LocatorsLogin, LocatorsMain
+from locators import LocatorsRegister, LocatorsLogin, LocatorsMain, LocatorsProfile
 
 # Открываем экран авторизации
 @pytest.fixture
@@ -41,10 +41,13 @@ def chrome_driver_login_enter_open_feed(chrome_driver_login_enter_open_main):
 
     chrome_driver_login_enter_open_main.quit()
 
-# Авторизируемся и переходим к экрану Личный кабинет
+# Авторизируемся и переходим к экрану Личный кабинет.
+# Ждем, пока прогрузятся элементы экрана, затем передаем в тест
 @pytest.fixture
 def chrome_driver_login_enter_open_profile(chrome_driver_login_enter_open_main):
     chrome_driver_login_enter_open_main.find_element(*LocatorsMain.ENTER_TO_PROFILE_BUTTON).click()
+    WebDriverWait(chrome_driver_login_enter_open_main, 3).until(
+        expected_conditions.element_to_be_clickable(LocatorsProfile.EXIT_BUTTON))
 
     yield chrome_driver_login_enter_open_main
 
