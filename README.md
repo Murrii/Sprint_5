@@ -1,4 +1,7 @@
 # Sprint_5
+Задание для 5 спринта курса Автоматизация тестирования от Яндекс.Практикума
+
+Тестировался сервис https://stellarburgers.nomoreparties.site/
 
 Написано 16 тестов, разделенных на 4 файла в зависимости от основной страницы теста:
 
@@ -8,10 +11,10 @@ test_constructor.py включает проверки:
 # Проверяем переход к разделу "Начинки" - test_go_to_the_ingridients_successful
 
 test_login.py  включает проверки:
-# вход по кнопке «Войти в аккаунт» на главной
-# вход через кнопку «Личный кабинет»,
-# вход через кнопку в форме регистрации,
-# вход через кнопку в форме восстановления пароля.
+# вход по кнопке «Войти в аккаунт» на главной - test_login_from_main_with_valid_log_valid_pass_successful
+# вход через кнопку «Личный кабинет» - test_login_from_main_to_profile_with_valid_log_valid_pass_successful
+# вход через кнопку в форме регистрации - test_login_from_registration_form_with_valid_log_valid_pass_successful
+# вход через кнопку в форме восстановления пароля - test_login_from_forgot_password_form_with_valid_log_valid_pass_successful
 
 test_profile.py включает проверки:
 # Проверяем переход в ЛК с главной страницы - test_go_to_profile_from_main_successful
